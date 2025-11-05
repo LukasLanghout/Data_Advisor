@@ -887,7 +887,9 @@ async def generate_pdf(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"PDF failed: {str(e)[:200]}")
 
 if __name__ == "__main__":
-    import uvicorn
+    import os
+
+    # Print startinfo
     print("\n" + "="*70)
     print("📊 DATA ADVISOR API v18.4 - PDF WITH CHARTS & VISUALS")
     print("="*70)
@@ -896,4 +898,11 @@ if __name__ == "__main__":
     print("📊 Grafieken:  matplotlib + seaborn")
     print("📄 PDF:        AI + statistieken + 4 grafieken")
     print("="*70 + "\n")
-    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+
+    # Start lokaal met uvicorn, Render gebruikt Gunicorn
+    if os.environ.get("RENDER") == "true":
+        from app import app  # Render start dit automatisch
+    else:
+        import uvicorn
+        uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+
