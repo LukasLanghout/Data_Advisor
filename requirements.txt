@@ -1,3 +1,4 @@
+pip install --upgrade pip
 fastapi==0.104.1
 uvicorn==0.24.0
 python-multipart==0.0.6
@@ -12,3 +13,4 @@ matplotlib==3.8.2
 seaborn==0.13.0
 plotly==5.18.0
 gunicorn==21.2.0
+
